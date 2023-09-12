@@ -1,21 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WpfApp2.Clases
 {
-    public class Banknote
+    public class Banknote: INotifyPropertyChanged
     {
-        public int title { get; set; }
-        public int current { get; set; }
-        public int max {  get; set; }
+        public int Title { get; set; }
+        public int Max {  get; set; }
+        private int current;
 
         public Banknote(int title, int current, int max) {
-            this.title = title;
+            this.Title = title;
             this.current = current;
-            this.max = max;            
+            this.Max = max;            
+        }
+        public int Current
+        { get { return current; }
+            set {
+                current = value;
+                OnPropertyChanged("Current");
+            }
+        }
+
+        public int Avaible()
+        {
+            return Max - Current;
+        }
+                
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
     }

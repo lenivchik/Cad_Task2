@@ -15,20 +15,20 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Grid Margin="502,64,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top" >
+        <Grid Margin="502,64,0,0" HorizontalAlignment="Left"  VerticalAlignment="Top"  >
             <ListView x:Name="bank_table"  VerticalAlignment="Center" HorizontalAlignment="Left">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding title}" Width="80" Header="Банкнота"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding current}" Width="80" Header="Наличие"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding max}" Width="80" Header="Максимум"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Title}" Width="80" Header="Банкнота"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Current}" Width="80" Header="Наличие"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Max}" Width="80" Header="Максимум"/>
                     </GridView>
                 </ListView.View>
             </ListView>
         </Grid>
-        <Grid x:Name="Main_w" Margin="19,48,388,51" Visibility="Collapsed" >
-            <Button x:Name="input" Content="Внести" HorizontalAlignment="Left" Margin="46,98,0,0" VerticalAlignment="Top" Height="28" Width="52" Click="input_Click"/>
-            <Button x:Name="output" Content="Снять" HorizontalAlignment="Left" Margin="291,100,0,0" Width="52" Height="27" VerticalAlignment="Top" RenderTransformOrigin="0.507,0.093" Click="output_Click"/>
+        <Grid x:Name="Main_w" Margin="19,48,388,51"   >
+            <Button x:Name="input" Content="Внести" HorizontalAlignment="Left" Margin="46,98,0,0" VerticalAlignment="Top" Height="28" Width="52" Click="Input_Click"/>
+            <Button x:Name="output" Content="Снять" HorizontalAlignment="Left" Margin="291,100,0,0" Width="52" Height="27" VerticalAlignment="Top" RenderTransformOrigin="0.507,0.093" Click="Output_Click"/>
             <TextBlock x:Name="Tb_Balance" HorizontalAlignment="Center" Margin="0,159,0,0" TextWrapping="Wrap" TextAlignment="Center"  Text="{Binding StringFormat=Баланс: {0:### ###},  UpdateSourceTrigger=PropertyChanged, Path=Balance}" VerticalAlignment="Top" Height="31" Width="184" FontWeight="Medium" FontSize="20">
                 <TextBlock.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -39,15 +39,15 @@
             </TextBlock>
             <Label Content="Добро пожаловать!" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
         </Grid>
-        <Grid x:Name="Input_Output" Margin="19,48,388,51" >
+        <Grid x:Name="Input_Output" Margin="19,48,388,51" Visibility="Collapsed" >
 
-            <Button x:Name="back" Content="Назад" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Height="29" Width="51" Click="back_Click" />
+            <Button x:Name="back" Content="Назад" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Height="29" Width="51" Click="Back_Click" />
             <Border BorderBrush="Black" BorderThickness="1" Margin="31,64,0,0" CornerRadius="10,10,10,10" HorizontalAlignment="Left" Width="65" Height="42" VerticalAlignment="Top">
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,0,0">
-                        <Button Content="+"  Padding="0,-3,0,0"/>
-                        <TextBox  Text="0"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
-                        <Button Content="-" Width="10" Padding="0,-3,0,0"/>
+                        <Button x:Name="Button_10_1" Content="+"  Padding="0,-3,0,0" Click="Button_10_1_Click" />
+                        <TextBox x:Name="tb_10"  Text="0"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
+                        <Button x:Name="Button_10_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_10_2_Click"/>
                     </StackPanel>
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
@@ -55,9 +55,9 @@
             <Border BorderBrush="Black" BorderThickness="1" Margin="31,118,0,0" CornerRadius="10,10,10,10" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65">
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-3,0">
-                        <Button Content="+"  Padding="0,-3,0,0"/>
-                        <TextBox  Text="0"  FontSize="10" Padding="0,0,0,0"/>
-                        <Button Content="-" Width="10" Padding="0,-3,0,0"/>
+                        <Button x:Name="Button_50_1" Content="+"  Padding="0,-3,0,0" Click="Button_50_1_Click"/>
+                        <TextBox x:Name="tb_50"  Text="0"  FontSize="10" Padding="0,0,0,0"/>
+                        <Button x:Name="Button_50_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_50_2_Click"/>
                     </StackPanel>
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
@@ -65,9 +65,9 @@
             <Border BorderBrush="Black" BorderThickness="1" Margin="31,172,0,0" CornerRadius="10,10,10,10" HorizontalAlignment="Left" Width="65" Height="41" VerticalAlignment="Top">
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-3,0">
-                        <Button Content="+"  Padding="0,-3,0,0"/>
-                        <TextBox  Text="0"  FontSize="10" Padding="0,0,0,0" IsReadOnly="True"/>
-                        <Button Content="-" Width="10" Padding="0,-3,0,0"/>
+                        <Button x:Name="Button_100_1" Content="+"  Padding="0,-3,0,0" Click="Button_100_1_Click"/>
+                        <TextBox x:Name="tb_100"  Text="0"  FontSize="10" Padding="0,0,0,0" IsReadOnly="True"/>
+                        <Button x:Name="Button_100_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_100_2_Click"/>
                     </StackPanel>
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
@@ -75,9 +75,9 @@
             <Border BorderBrush="Black" BorderThickness="1" Margin="0,64,41,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="42" VerticalAlignment="Top">
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-8,0">
-                        <Button Content="+"  Padding="0,-3,0,0"/>
-                        <TextBox  Text="0" IsReadOnly="True"  FontSize="10" Padding="0,0,0,0" TextChanged="TextBox_TextChanged"/>
-                        <Button Content="-" Width="10" Padding="0,-3,0,0"/>
+                        <Button x:Name="Button_500_1" Content="+"  Padding="0,-3,0,0" Click="Button_500_1_Click"/>
+                        <TextBox x:Name="tb_500"  Text="0" IsReadOnly="True"  FontSize="10" Padding="0,0,0,0"/>
+                        <Button x:Name="Button_500_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_500_2_Click"/>
                     </StackPanel>
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="500" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
@@ -85,9 +85,9 @@
             <Border BorderBrush="Black" BorderThickness="1" Margin="0,118,41,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="42" VerticalAlignment="Top">
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-8,0">
-                        <Button Content="+"  Padding="0,-3,0,0"/>
-                        <TextBox  Text="0" IsReadOnly="True"  FontSize="10" Padding="0,0,0,0"/>
-                        <Button Content="-" Width="10" Padding="0,-3,0,0"/>
+                        <Button x:Name="Button_1000_1" Content="+"  Padding="0,-3,0,0" Click="Button_1000_1_Click"/>
+                        <TextBox x:Name="tb_1000"  Text="0" IsReadOnly="True"  FontSize="10" Padding="0,0,0,0"/>
+                        <Button x:Name="Button_1000_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_1000_2_Click"/>
                     </StackPanel>
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
@@ -95,16 +95,16 @@
             <Border BorderBrush="Black" BorderThickness="1" Margin="0,172,41,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="41" VerticalAlignment="Top">
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-8,0">
-                        <Button Content="+"  Padding="0,-3,0,0"/>
-                        <TextBox  Text="0"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
-                        <Button Content="-" Width="10" Padding="0,-3,0,0"/>
+                        <Button x:Name="Button_5000_1" Content="+"  Padding="0,-3,0,0" Click="Button_5000_1_Click"/>
+                        <TextBox x:Name="tb_5000"  Text="0"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
+                        <Button x:Name="Button_5000_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_5000_2_Click"/>
                     </StackPanel>
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="5000" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
-            <Button x:Name="But_In_Out" Content="Внести" HorizontalAlignment="Center" Margin="0,169,0,0" VerticalAlignment="Top" Height="32" Width="56"/>
+            <Button x:Name="But_In_Out" Content="Внести" HorizontalAlignment="Center" Margin="0,169,0,0" VerticalAlignment="Top" Height="32" Width="56" Click="But_In_Out_Click"/>
             <Border BorderBrush="Black" BorderThickness="1" Margin="132,64,0,0" CornerRadius="10,10,10,10" Background="#FF331CDC" Height="76" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130">
-                <TextBox x:Name="Tb_Info" TextWrapping="Wrap" Text="Выберете количество вносимых купюр"  Margin="7,7,7,7" Background="#FF331CDC" BorderBrush="{x:Null}"  HorizontalAlignment="Center" TextChanged="TextBox_TextChanged_3"/>
+                <TextBox x:Name="Tb_Info" TextWrapping="Wrap" Text="Выберете количество вносимых купюр"  Margin="7,7,7,7" Background="#FF331CDC" BorderBrush="{x:Null}"  HorizontalAlignment="Center" />
 
             </Border>
 
