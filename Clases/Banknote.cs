@@ -40,11 +40,16 @@ namespace WpfApp2.Clases
             }
         }
 
-        public int Avaible()
+        public bool Avaible(Boolean inp)
         {
-            return Max - Current;
+            if (inp)
+                return ((current - wish) > 0);
+
+            return (Max-current-wish)>0 ;
+
         }
-                
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")

@@ -14,6 +14,7 @@ namespace WpfApp2.Clases
     {
         public List<Banknote> BanknoteList { get; set; }
         private int balance;
+        private Boolean in_out;
         public  Handler() {
             BanknoteList = new List<Banknote>
             {
@@ -40,14 +41,16 @@ namespace WpfApp2.Clases
         public void Check_Input(int title)
         {
             Banknote banknote = BanknoteList.Find(x=>x.Title == title);
-            if(banknote.Avaible() > banknote.Wish)
+            if(banknote.Avaible(in_out))
                 banknote.Wish += 1;
             else
                 MessageBox.Show("Достигнут лимит данного типа купюр");
+            in_out = false;
         }
 
         public void Check_Output(int title)
         {
+            in_out = true;
             int res = sum();
             Banknote banknote = BanknoteList.Find(x => x.Title == title);
             if (res + title*(banknote.Wish + 1)-balance<=0)
