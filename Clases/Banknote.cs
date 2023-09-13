@@ -13,17 +13,30 @@ namespace WpfApp2.Clases
         public int Title { get; set; }
         public int Max {  get; set; }
         private int current;
+        private int wish;
 
         public Banknote(int title, int current, int max) {
             this.Title = title;
             this.current = current;
-            this.Max = max;            
+            this.Max = max;
+            wish = 0;
+            
         }
         public int Current
         { get { return current; }
             set {
                 current = value;
                 OnPropertyChanged("Current");
+            }
+        }
+
+        public int Wish
+        {
+            get { return wish; }
+            set
+            {
+                wish = value;
+                OnPropertyChanged("Wish");
             }
         }
 

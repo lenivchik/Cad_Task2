@@ -37,59 +37,67 @@ namespace WpfApp2.Clases
         }
 
 
-        public int Check_Input(int title, int tb)
+        public void Check_Input(int title)
         {
-            int banknote = BanknoteList.Find(x=>x.Title == title).Avaible();
-            if(banknote > tb)
-                return tb+1;
-            MessageBox.Show("Достигнут лимит данного типа купюр");
-            return tb;
+            Banknote banknote = BanknoteList.Find(x=>x.Title == title);
+            if(banknote.Avaible() > banknote.Wish)
+                banknote.Wish += 1;
+            else
+                MessageBox.Show("Достигнут лимит данного типа купюр");
         }
 
-        public int Check_Output(int title,int tb, int tb1, int tb2, int tb3, int tb4, int tb5, int tb6)
+        public void Check_Output(int title)
         {
-            int res = 10 * tb1 + 50 * tb2 + 100 * tb3 + 500 * tb4 + 1000 * tb5 + 5000 * tb6;
-            if (res + title*(tb+1)-balance<=0)
+            int res = sum();
+            Banknote banknote = BanknoteList.Find(x => x.Title == title);
+            if (res + title*(banknote.Wish + 1)-balance<=0)
             {
-                return Check_Input(title,tb);
+                Check_Input(title);
             }
-            MessageBox.Show("Недостаточно средств");
-
-            return tb;
+            else
+                MessageBox.Show("Недостаточно средств");
         }
-
-        private int calk_pl(int tb1, int tb2, int tb3, int tb4, int tb5, int tb6)
+        public void min_but(int title)
         {
-            BanknoteList[0].Current += tb1;
-            BanknoteList[1].Current += tb2;
-            BanknoteList[2].Current += tb3;
-            BanknoteList[3].Current += tb4;
-            BanknoteList[4].Current += tb5;
-            BanknoteList[5].Current += tb6;
-            return 10 * tb1 + 50 * tb2 + 100 * tb3 + 500 * tb4 + 1000 * tb5 + 5000 * tb6;
-        }
-        private int calk_m(int tb1, int tb2, int tb3, int tb4, int tb5, int tb6)
-        {
-            BanknoteList[0].Current -= tb1;
-            BanknoteList[1].Current -= tb2;
-            BanknoteList[2].Current -= tb3;
-            BanknoteList[3].Current -= tb4;
-            BanknoteList[4].Current -= tb5;
-            BanknoteList[5].Current -= tb6;
-            return 10 * tb1 + 50 * tb2 + 100 * tb3 + 500 * tb4 + 1000 * tb5 + 5000 * tb6;
-        }
-
-        public int Add_Balance(int tb1, int tb2, int tb3, int tb4, int tb5, int tb6)
-        {
-
-            return balance + calk_pl(tb1, tb2, tb3, tb4, tb5, tb6);
+            Banknote banknote = BanknoteList.Find(x => x.Title == title);
+            if (banknote.Wish > 0)
+                banknote.Wish -= 1;
 
         }
-
-        public int Remoove_Balance(int tb1, int tb2, int tb3, int tb4, int tb5, int tb6)
+        private int sum()
         {
+            int sum = 0;
+            foreach (var bank in BanknoteList)
+            {
+                sum += bank.Title * bank.Wish;
+            }
+            return sum;
+        }
 
-            return balance - calk_m(tb1, tb2, tb3, tb4, tb5, tb6);
+
+        public void Add_Balance()
+        {
+            int sum = 0;
+            foreach (var bank in BanknoteList)
+            {
+                bank.Current += bank.Wish;
+                sum += bank.Title * bank.Wish;
+                bank.Wish = 0;
+            }
+            Balance += sum;
+
+        }
+
+        public void Remoove_Balance()
+        {
+            int sum = 0;
+            foreach (var bank in BanknoteList)
+            {
+                bank.Current -= bank.Wish;
+                sum += bank.Title * bank.Wish;
+                bank.Wish = 0;
+            }
+            Balance -= sum;
 
         }
 

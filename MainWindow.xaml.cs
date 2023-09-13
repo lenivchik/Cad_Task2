@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,7 +31,17 @@ namespace WpfApp2
             handler = new Handler();
             bank_table.ItemsSource = handler.BanknoteList;
             Tb_Balance.DataContext=handler;
-            
+            First_tb.DataContext = handler.BanknoteList[0];
+            Sec_tb.DataContext = handler.BanknoteList[1];
+            Th_tb.DataContext = handler.BanknoteList[2];
+            Fo_tb.DataContext = handler.BanknoteList[3];
+            Fi_tb.DataContext = handler.BanknoteList[4];
+            Si_tb.DataContext = handler.BanknoteList[5];
+
+
+
+
+
 
         }
 
@@ -81,188 +93,97 @@ namespace WpfApp2
 
         private void Button_10_1_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_10.Text);
-            int up;
-
             if (inf_fl)
-            {
-                 up = handler.Check_Input(10, cur);
-            }
+                 handler.Check_Input(10);          
             else
-            {
-                up = handler.Check_Output(10, cur, int.Parse(tb_10.Text), int.Parse(tb_50.Text), int.Parse(tb_100.Text), int.Parse(tb_500.Text), int.Parse(tb_1000.Text), int.Parse(tb_5000.Text));
-            }
-            if (cur != up)
-                tb_10.Text = up.ToString();
-
+                handler.Check_Output(10);
         }
 
         private void Button_50_1_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_50.Text);
-            int up;
-
             if (inf_fl)
-            {
-                up = handler.Check_Input(10, cur);
-            }
+                handler.Check_Input(50);
             else
-            {
-                up = handler.Check_Output(50, cur, int.Parse(tb_10.Text), int.Parse(tb_50.Text), int.Parse(tb_100.Text), int.Parse(tb_500.Text), int.Parse(tb_1000.Text), int.Parse(tb_5000.Text));
-            }
-            if (cur != up)
-                tb_50.Text = up.ToString();
+                handler.Check_Output(50);
 
         }
 
         private void Button_100_1_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_100.Text);
-            int up;
-
             if (inf_fl)
-            {
-                up = handler.Check_Input(100, cur);
-            }
+                handler.Check_Input(100);
             else
-            {
-                up = handler.Check_Output(100, cur, int.Parse(tb_10.Text), int.Parse(tb_50.Text), int.Parse(tb_100.Text), int.Parse(tb_500.Text), int.Parse(tb_1000.Text), int.Parse(tb_5000.Text));
-            }
-            if (cur != up)
-                tb_100.Text = up.ToString();
-
+                handler.Check_Output(100);
         }
 
         private void Button_500_1_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_500.Text);
-            int up;
-
             if (inf_fl)
-            {
-                up = handler.Check_Input(500, cur);
-            }
+                handler.Check_Input(500);
             else
-            {
-                up = handler.Check_Output(500, cur, int.Parse(tb_10.Text), int.Parse(tb_50.Text), int.Parse(tb_100.Text), int.Parse(tb_500.Text), int.Parse(tb_1000.Text), int.Parse(tb_5000.Text));
-            }
-            if (cur != up)
-                tb_500.Text = up.ToString();
+                handler.Check_Output(500);
 
         }
 
         private void Button_1000_1_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_1000.Text);
-            int up;
-
             if (inf_fl)
-            {
-                up = handler.Check_Input(1000, cur);
-            }
+                handler.Check_Input(1000);
             else
-            {
-                up = handler.Check_Output(1000, cur, int.Parse(tb_10.Text), int.Parse(tb_50.Text), int.Parse(tb_100.Text), int.Parse(tb_500.Text), int.Parse(tb_1000.Text), int.Parse(tb_5000.Text));
-            }
-            if (cur != up)
-                tb_1000.Text = up.ToString();
-
+                handler.Check_Output(1000);
         }
 
         private void Button_5000_1_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_5000.Text);
-            int up;
-
             if (inf_fl)
-            {
-                up = handler.Check_Input(5000, cur);
-            }
+                handler.Check_Input(5000);
             else
-            {
-                up = handler.Check_Output(5000, cur, int.Parse(tb_10.Text), int.Parse(tb_50.Text), int.Parse(tb_100.Text), int.Parse(tb_500.Text), int.Parse(tb_1000.Text), int.Parse(tb_5000.Text));
-            }
-            if (cur != up)
-                tb_5000.Text = up.ToString();
-
+                handler.Check_Output(5000);
         }
 
         private void Button_10_2_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_10.Text);            
-            if (cur > 0)
-            {
-                tb_10.Text = (cur-1).ToString();
-            }
+            handler.min_but(10);
         }
 
         private void Button_50_2_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_50.Text);
-            if (cur > 0)
-            {
-                tb_50.Text = (cur - 1).ToString();
-            }
+            handler.min_but(50);
         }
 
         private void Button_100_2_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_100.Text);
-            if (cur > 0)
-            {
-                tb_100.Text = (cur - 1).ToString();
-            }
+            handler.min_but(100);
         }
 
         private void Button_500_2_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_500.Text);
-            if (cur > 0)
-            {
-                tb_500.Text = (cur - 1).ToString();
-            }
+            handler.min_but(500);
         }
 
         private void Button_1000_2_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_1000.Text);
-            if (cur > 0)
-            {
-                tb_1000.Text = (cur - 1).ToString();
-            }
+            handler.min_but(1000);
         }
 
         private void Button_5000_2_Click(object sender, RoutedEventArgs e)
         {
-            int cur = int.Parse(tb_5000.Text);
-            if (cur > 0)
-            {
-                tb_5000.Text = (cur - 1).ToString();
-            }
+            handler.min_but(5000);
         }
 
-        private void clearAll()
-        {
-            tb_10.Text = "0" ;
-            tb_50.Text = "0";
-            tb_100.Text = "0";
-            tb_500.Text = "0";
-            tb_1000.Text = "0";
-            tb_5000.Text = "0";
-        }
+
 
         private void But_In_Out_Click(object sender, RoutedEventArgs e)
         {
             if (inf_fl)
             {
-                handler.Balance= handler.Add_Balance(int.Parse(tb_10.Text), int.Parse(tb_50.Text), int.Parse(tb_100.Text), int.Parse(tb_500.Text), int.Parse(tb_1000.Text), int.Parse(tb_5000.Text));
+                handler.Add_Balance();
             }
             else
             {
-                handler.Balance=handler.Remoove_Balance(int.Parse(tb_10.Text), int.Parse(tb_50.Text), int.Parse(tb_100.Text), int.Parse(tb_500.Text), int.Parse(tb_1000.Text), int.Parse(tb_5000.Text));
+                handler.Remoove_Balance();
             }
             MessageBox.Show("Успешно");
-            clearAll();
         }
     }
 }

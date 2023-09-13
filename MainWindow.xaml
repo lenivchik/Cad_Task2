@@ -43,63 +43,65 @@
 
             <Button x:Name="back" Content="Назад" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Height="29" Width="51" Click="Back_Click" />
             <Border BorderBrush="Black" BorderThickness="1" Margin="31,64,0,0" CornerRadius="10,10,10,10" HorizontalAlignment="Left" Width="65" Height="42" VerticalAlignment="Top">
-                <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,0,0">
+                <Grid x:Name="First_tb" DataContext="StaticResource Banknote">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-3,0">
                         <Button x:Name="Button_10_1" Content="+"  Padding="0,-3,0,0" Click="Button_10_1_Click" />
-                        <TextBox x:Name="tb_10"  Text="0"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
+                        <TextBox x:Name="tb_10"  Text="{Binding Wish}"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
                         <Button x:Name="Button_10_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_10_2_Click"/>
                     </StackPanel>
-                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" Margin="31,118,0,0" CornerRadius="10,10,10,10" Height="42" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65">
-                <Grid>
+                <Grid x:Name="Sec_tb" DataContext="StaticResource Banknote">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-3,0">
-                        <Button x:Name="Button_50_1" Content="+"  Padding="0,-3,0,0" Click="Button_50_1_Click"/>
-                        <TextBox x:Name="tb_50"  Text="0"  FontSize="10" Padding="0,0,0,0"/>
+                        <Button x:Name="Button_50_1" Content="+"  Padding="0,-3,0,0" Click="Button_50_1_Click" />
+                        <TextBox x:Name="tb_50"  Text="{Binding Wish,  UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
                         <Button x:Name="Button_50_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_50_2_Click"/>
                     </StackPanel>
-                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" Margin="31,172,0,0" CornerRadius="10,10,10,10" HorizontalAlignment="Left" Width="65" Height="41" VerticalAlignment="Top">
-                <Grid>
+                <Grid x:Name="Th_tb" DataContext="StaticResource Banknote">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-3,0">
-                        <Button x:Name="Button_100_1" Content="+"  Padding="0,-3,0,0" Click="Button_100_1_Click"/>
-                        <TextBox x:Name="tb_100"  Text="0"  FontSize="10" Padding="0,0,0,0" IsReadOnly="True"/>
+                        <Button x:Name="Button_100_1" Content="+"  Padding="0,-3,0,0" Click="Button_100_1_Click" />
+                        <TextBox x:Name="tb_100"  Text="{Binding Wish,  UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
                         <Button x:Name="Button_100_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_100_2_Click"/>
                     </StackPanel>
-                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="100" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" Margin="0,64,41,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="42" VerticalAlignment="Top">
-                <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-8,0">
-                        <Button x:Name="Button_500_1" Content="+"  Padding="0,-3,0,0" Click="Button_500_1_Click"/>
-                        <TextBox x:Name="tb_500"  Text="0" IsReadOnly="True"  FontSize="10" Padding="0,0,0,0"/>
+                <Grid x:Name="Fo_tb" DataContext="StaticResource Banknote">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-3,0">
+                        <Button x:Name="Button_500_1" Content="+"  Padding="0,-3,0,0" Click="Button_500_1_Click" />
+                        <TextBox x:Name="tb_500"  Text="{Binding Wish, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
                         <Button x:Name="Button_500_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_500_2_Click"/>
                     </StackPanel>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
+
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="500" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" Margin="0,118,41,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="42" VerticalAlignment="Top">
-                <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-8,0">
-                        <Button x:Name="Button_1000_1" Content="+"  Padding="0,-3,0,0" Click="Button_1000_1_Click"/>
-                        <TextBox x:Name="tb_1000"  Text="0" IsReadOnly="True"  FontSize="10" Padding="0,0,0,0"/>
+                <Grid x:Name="Fi_tb" DataContext="StaticResource Banknote">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-3,0">
+                        <Button x:Name="Button_1000_1" Content="+"  Padding="0,-3,0,0" Click="Button_1000_1_Click" />
+                        <TextBox x:Name="tb_1000"  Text="{Binding Wish, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
                         <Button x:Name="Button_1000_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_1000_2_Click"/>
                     </StackPanel>
-                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" Margin="0,172,41,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="41" VerticalAlignment="Top">
-                <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-8,0">
-                        <Button x:Name="Button_5000_1" Content="+"  Padding="0,-3,0,0" Click="Button_5000_1_Click"/>
-                        <TextBox x:Name="tb_5000"  Text="0"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
+                <Grid x:Name="Si_tb" DataContext="StaticResource Banknote">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="49" Height="18" VerticalAlignment="Top" Canvas.Left="5" Canvas.Top="20" Margin="0,20,-3,0">
+                        <Button x:Name="Button_5000_1" Content="+"  Padding="0,-3,0,0" Click="Button_5000_1_Click" />
+                        <TextBox x:Name="tb_5000"  Text="{Binding Wish, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" FontSize="10" Padding="0,0,0,0"/>
                         <Button x:Name="Button_5000_2" Content="-" Width="10" Padding="0,-3,0,0" Click="Button_5000_2_Click"/>
                     </StackPanel>
-                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="5000" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
+                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
             <Button x:Name="But_In_Out" Content="Внести" HorizontalAlignment="Center" Margin="0,169,0,0" VerticalAlignment="Top" Height="32" Width="56" Click="But_In_Out_Click"/>
