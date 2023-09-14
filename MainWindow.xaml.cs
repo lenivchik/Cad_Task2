@@ -37,12 +37,6 @@ namespace WpfApp2
             Fo_tb.DataContext = handler.BanknoteList[3];
             Fi_tb.DataContext = handler.BanknoteList[4];
             Si_tb.DataContext = handler.BanknoteList[5];
-
-
-
-
-
-
         }
 
         private void Input_Click(object sender, RoutedEventArgs e)
@@ -51,6 +45,16 @@ namespace WpfApp2
             Main_w.Visibility= Visibility.Collapsed;
             Chenge_Info();
             Input_Output.Visibility = Visibility.Visible;
+        }
+
+        private void Plus_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            using (System.IO.StreamWriter writer = new System.IO.StreamWriter("log.txt", true))
+            {
+                writer.WriteLine("Выход из приложения: " + DateTime.Now.ToShortDateString() + " " +
+                DateTime.Now.ToLongTimeString());
+                writer.Flush();
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -91,84 +95,18 @@ namespace WpfApp2
             }
         }
 
-        private void Button_10_1_Click(object sender, RoutedEventArgs e)
+        private void Button_1_Click(object sender, RoutedEventArgs e)
         {
+            int sp2= int.Parse(((TextBlock)((Grid)((Panel)((Control)sender).Parent).Parent).Children[1]).Text);
             if (inf_fl)
-                 handler.Check_Input(10);          
+                 handler.Check_Input(sp2);          
             else
-                handler.Check_Output(10);
+                handler.Check_Output(sp2);
         }
-
-        private void Button_50_1_Click(object sender, RoutedEventArgs e)
+        private void Button_2_Click(object sender, RoutedEventArgs e)
         {
-            if (inf_fl)
-                handler.Check_Input(50);
-            else
-                handler.Check_Output(50);
-
-        }
-
-        private void Button_100_1_Click(object sender, RoutedEventArgs e)
-        {
-            if (inf_fl)
-                handler.Check_Input(100);
-            else
-                handler.Check_Output(100);
-        }
-
-        private void Button_500_1_Click(object sender, RoutedEventArgs e)
-        {
-            if (inf_fl)
-                handler.Check_Input(500);
-            else
-                handler.Check_Output(500);
-
-        }
-
-        private void Button_1000_1_Click(object sender, RoutedEventArgs e)
-        {
-            if (inf_fl)
-                handler.Check_Input(1000);
-            else
-                handler.Check_Output(1000);
-        }
-
-        private void Button_5000_1_Click(object sender, RoutedEventArgs e)
-        {
-            if (inf_fl)
-                handler.Check_Input(5000);
-            else
-                handler.Check_Output(5000);
-        }
-
-        private void Button_10_2_Click(object sender, RoutedEventArgs e)
-        {
-            handler.min_but(10);
-        }
-
-        private void Button_50_2_Click(object sender, RoutedEventArgs e)
-        {
-            handler.min_but(50);
-        }
-
-        private void Button_100_2_Click(object sender, RoutedEventArgs e)
-        {
-            handler.min_but(100);
-        }
-
-        private void Button_500_2_Click(object sender, RoutedEventArgs e)
-        {
-            handler.min_but(500);
-        }
-
-        private void Button_1000_2_Click(object sender, RoutedEventArgs e)
-        {
-            handler.min_but(1000);
-        }
-
-        private void Button_5000_2_Click(object sender, RoutedEventArgs e)
-        {
-            handler.min_but(5000);
+            int sp2 = int.Parse(((TextBlock)((Grid)((Panel)((Control)sender).Parent).Parent).Children[1]).Text);
+            handler.min_but(sp2);
         }
 
 
@@ -185,5 +123,15 @@ namespace WpfApp2
             }
             MessageBox.Show("Успешно");
         }
+    }
+
+
+    public class WindowCommands
+    {
+        static WindowCommands()
+        {
+            Plus = new RoutedCommand("Plus", typeof(MainWindow));
+        }
+        public static RoutedCommand Plus { get; set; }
     }
 }
