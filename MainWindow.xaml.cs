@@ -47,15 +47,6 @@ namespace WpfApp2
             Input_Output.Visibility = Visibility.Visible;
         }
 
-        private void Plus_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            using (System.IO.StreamWriter writer = new System.IO.StreamWriter("log.txt", true))
-            {
-                writer.WriteLine("Выход из приложения: " + DateTime.Now.ToShortDateString() + " " +
-                DateTime.Now.ToLongTimeString());
-                writer.Flush();
-            }
-        }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
@@ -76,8 +67,9 @@ namespace WpfApp2
 
         private void Chenge_Info()
         {
-            Tb_Balance.Margin = new Thickness(0, 10, 0, 0);
             Main_w.Children.Remove(Tb_Balance);
+            Grid.SetColumn(Tb_Balance, 1);
+            Tb_Balance.Margin = new Thickness(0, 10, 0, 0);
             Input_Output.Children.Add(Tb_Balance);
             String info;
             if (inf_fl)

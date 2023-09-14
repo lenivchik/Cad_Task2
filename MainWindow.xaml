@@ -38,7 +38,7 @@
 
 
     <Grid Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
-        <Rectangle Margin="19,48,388,51" Stroke="Black">
+        <Rectangle Margin="19,48,0,0" Stroke="Black" Height="266" VerticalAlignment="Top" HorizontalAlignment="Left" Width="444">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
@@ -57,9 +57,7 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <Grid x:Name="Main_w" Margin="19,48,388,51"   >
-            <Button x:Name="input" Content="Внести" HorizontalAlignment="Left" Margin="46,98,0,0" VerticalAlignment="Top" Height="28" Width="52" Click="Input_Click"/>
-            <Button x:Name="output" Content="Снять" HorizontalAlignment="Left" Margin="291,100,0,0" Width="52" Height="27" VerticalAlignment="Top" RenderTransformOrigin="0.507,0.093" Click="Output_Click"/>
+        <Grid x:Name="Main_w" Margin="19,48,0,0" HorizontalAlignment="Left" Width="444" Height="266" VerticalAlignment="Top"  >
             <TextBlock x:Name="Tb_Balance" HorizontalAlignment="Center" Margin="0,159,0,0" TextWrapping="Wrap" TextAlignment="Center"  Text="{Binding StringFormat=Баланс: {0:### ###},  UpdateSourceTrigger=PropertyChanged, Path=Balance}" VerticalAlignment="Top" Height="31" Width="184" FontWeight="Medium" FontSize="20">
                 <TextBlock.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -69,6 +67,8 @@
                 </TextBlock.Background>
             </TextBlock>
             <Label Content="Добро пожаловать!" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+            <Button x:Name="output" Content="Снять" Margin="0,0,32,0" Height="26" VerticalAlignment="Center" RenderTransformOrigin="0.507,0.093" Click="Output_Click" HorizontalAlignment="Right" Width="52"/>
+            <Button x:Name="input" Content="Внести" HorizontalAlignment="Left" Margin="33,119,0,0" VerticalAlignment="Top" Height="28" Width="52" Click="Input_Click"/>
         </Grid>
 
 
@@ -76,11 +76,16 @@
 
 
 
-        <Grid x:Name="Input_Output" Margin="19,48,388,51" Visibility="Collapsed" >
+        <Grid x:Name="Input_Output"   Visibility="Collapsed" Margin="19,48,0,0" Height="266" VerticalAlignment="Top" HorizontalAlignment="Left" Width="444"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
             <Button x:Name="back" Content="Назад" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Height="29" Width="51" Click="Back_Click" />
-            <Border BorderBrush="Black" BorderThickness="1" Margin="31,64,0,0" CornerRadius="10,10,10,10" HorizontalAlignment="Left" Width="65" Height="42" VerticalAlignment="Top">
-                <Grid x:Name="First_tb" DataContext="StaticResource Banknote">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="30,64,0,0" CornerRadius="10,10,10,10" HorizontalAlignment="Left" Width="65" Height="42" VerticalAlignment="Top">
+                <Grid x:Name="First_tb" DataContext="StaticResource Banknote" >
                     <StackPanel Style="{StaticResource MyStack}">
                         <Button Style="{StaticResource Btn_1}"/>
                         <TextBox Style="{StaticResource Tb_middle}"/>
@@ -109,7 +114,7 @@
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="0,64,41,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="42" VerticalAlignment="Top">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,64,30,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="42" VerticalAlignment="Top" Grid.Column="2">
                 <Grid x:Name="Fo_tb" DataContext="StaticResource Banknote">
                     <StackPanel Style="{StaticResource MyStack}">
                         <Button Style="{StaticResource Btn_1}"/>
@@ -118,10 +123,9 @@
                     </StackPanel>
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
 
-                    <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="500" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="0,118,41,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="42" VerticalAlignment="Top">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,118,30,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="42" VerticalAlignment="Top" Grid.Column="2">
                 <Grid x:Name="Fi_tb" DataContext="StaticResource Banknote">
                     <StackPanel Style="{StaticResource MyStack}">
                         <Button Style="{StaticResource Btn_1}"/>
@@ -131,7 +135,7 @@
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="0,172,41,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="41" VerticalAlignment="Top">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,172,30,0" CornerRadius="10,10,10,10" HorizontalAlignment="Right" Width="55" Height="41" VerticalAlignment="Top" Grid.Column="2">
                 <Grid x:Name="Si_tb" DataContext="StaticResource Banknote">
                     <StackPanel Style="{StaticResource MyStack}">
                         <Button Style="{StaticResource Btn_1}"/>
@@ -141,9 +145,9 @@
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" RenderTransformOrigin="0.077,0.504" FontWeight="Bold" Canvas.Left="22" Canvas.Top="4" Margin="0,4,0,0"/>
                 </Grid>
             </Border>
-            <Button x:Name="But_In_Out" Content="Внести" HorizontalAlignment="Center" Margin="0,169,0,0" VerticalAlignment="Top" Height="32" Width="56" Click="But_In_Out_Click"/>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="132,64,0,0" CornerRadius="10,10,10,10" Background="#FF331CDC" Height="76" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130">
-                <TextBox x:Name="Tb_Info" TextWrapping="Wrap" Text="Выберете количество вносимых купюр"  Margin="7,7,7,7" Background="#FF331CDC" BorderBrush="{x:Null}"  HorizontalAlignment="Center" />
+            <Button x:Name="But_In_Out" Content="Внести" Margin="37,160,38,0" VerticalAlignment="Top" Height="32" Click="But_In_Out_Click" Grid.Column="1"/>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="0,57,0,133" CornerRadius="10,10,10,10" Background="#FF331CDC" HorizontalAlignment="Center" Width="130" Grid.Column="1">
+                <TextBox x:Name="Tb_Info" TextWrapping="Wrap" Text="Выберете количество вносимых купюр"  Margin="9,-1,0,15" Background="#FF331CDC" BorderBrush="{x:Null}"  HorizontalAlignment="Left" />
 
             </Border>
         </Grid>
