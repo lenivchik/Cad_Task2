@@ -101,9 +101,14 @@ namespace WpfApp2.Clases
                 bank.Wish = 0;
             }
             Balance -= sum;
-
         }
-
+        public void Clear_Wish()
+        {
+            foreach (var bank in BanknoteList)
+            {
+                bank.Wish = 0;
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

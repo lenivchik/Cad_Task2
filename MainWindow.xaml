@@ -76,7 +76,7 @@
 
 
 
-        <Grid x:Name="Input_Output"   Visibility="Collapsed" Margin="19,48,0,0" Height="266" VerticalAlignment="Top" HorizontalAlignment="Left" Width="444"  >
+        <Grid x:Name="Input_Output"  Visibility="Collapsed"  Margin="19,48,0,0" Height="266" VerticalAlignment="Top" HorizontalAlignment="Left" Width="444"  >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -147,7 +147,7 @@
             </Border>
             <Button x:Name="But_In_Out" Content="Внести" Margin="37,160,38,0" VerticalAlignment="Top" Height="32" Click="But_In_Out_Click" Grid.Column="1"/>
             <Border BorderBrush="Black" BorderThickness="1" Margin="0,57,0,133" CornerRadius="10,10,10,10" Background="#FF331CDC" HorizontalAlignment="Center" Width="130" Grid.Column="1">
-                <TextBox x:Name="Tb_Info" TextWrapping="Wrap" Text="Выберете количество вносимых купюр"  Margin="9,-1,0,15" Background="#FF331CDC" BorderBrush="{x:Null}"  HorizontalAlignment="Left" />
+                <TextBlock x:Name="Tb_Info" TextWrapping="Wrap" Text="Выберете количество вносимых купюр"  Margin="9,7,0,7" Background="#FF331CDC"   HorizontalAlignment="Left" />
 
             </Border>
         </Grid>

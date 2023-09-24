@@ -51,6 +51,7 @@ namespace WpfApp2
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             Input_Output.Visibility = Visibility.Collapsed;
+            handler.Clear_Wish();
             Tb_Balance.Margin = new Thickness(0, 159, 0, 0);
             Input_Output.Children.Remove(Tb_Balance);
             Main_w.Children.Add(Tb_Balance);
@@ -72,6 +73,7 @@ namespace WpfApp2
             Tb_Balance.Margin = new Thickness(0, 10, 0, 0);
             Input_Output.Children.Add(Tb_Balance);
             String info;
+            Tb_Info.Foreground = Brushes.Black;
             if (inf_fl)
             {
                 info = "Выберете количество вносимых купюр";
@@ -106,24 +108,13 @@ namespace WpfApp2
         private void But_In_Out_Click(object sender, RoutedEventArgs e)
         {
             if (inf_fl)
-            {
                 handler.Add_Balance();
-            }
             else
-            {
                 handler.Remoove_Balance();
-            }
-            MessageBox.Show("Успешно");
+            String info = "Успешно";
+            Tb_Info.Foreground = Brushes.Gold;
+            Tb_Info.Text = info;
         }
     }
 
-
-    public class WindowCommands
-    {
-        static WindowCommands()
-        {
-            Plus = new RoutedCommand("Plus", typeof(MainWindow));
-        }
-        public static RoutedCommand Plus { get; set; }
-    }
 }
