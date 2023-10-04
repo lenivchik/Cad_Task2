@@ -12,7 +12,7 @@ namespace WpfApp2.Clases
 {
     public class Handler : INotifyPropertyChanged
     {
-        public List<Banknote> BanknoteList { get; set; }
+        public List<Banknote> BanknoteList { get;}
         private int balance;
         private Boolean in_out;
         public  Handler() {
@@ -38,27 +38,31 @@ namespace WpfApp2.Clases
         }
 
 
-        public void Check_Input(int title)
+        public bool Check_Input(int title)
         {
             Banknote banknote = BanknoteList.Find(x=>x.Title == title);
-            if(banknote.Avaible(in_out))
+            if (banknote.Avaible(in_out))
+            {
                 banknote.Wish += 1;
-            else
-                MessageBox.Show("Достигнут лимит данного типа купюр");
+                in_out = false;
+                return true;
+            }
             in_out = false;
+            return false;
         }
 
-        public void Check_Output(int title)
+        public bool Check_Output(int title)
         {
             in_out = true;
             int res = sum();
             Banknote banknote = BanknoteList.Find(x => x.Title == title);
-            if (res + title*(banknote.Wish + 1)-balance<=0)
+            if (res + title - balance <= 0)
             {
                 Check_Input(title);
+                return true;
             }
             else
-                MessageBox.Show("Недостаточно средств");
+                return false;
         }
         public void min_but(int title)
         {

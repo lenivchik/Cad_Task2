@@ -91,11 +91,31 @@ namespace WpfApp2
 
         private void Button_1_Click(object sender, RoutedEventArgs e)
         {
+            string info = "Выберете количество вносимых купюр";
+            Tb_Info.Foreground=Brushes.Black;
+            Tb_Info.Text = info;
+
             int sp2= int.Parse(((TextBlock)((Grid)((Panel)((Control)sender).Parent).Parent).Children[1]).Text);
             if (inf_fl)
-                 handler.Check_Input(sp2);          
+            {
+                if (!handler.Check_Input(sp2))
+                {
+                    info = "Достигнут лимит данного типа купюр";
+                    Tb_Info.Foreground = Brushes.Gold;
+                    Tb_Info.Text = info;
+                }
+            }           
             else
-                handler.Check_Output(sp2);
+               if(!handler.Check_Output(sp2))
+            {
+                info = "Недостаточно средств";
+                Tb_Info.Foreground = Brushes.Gold;
+                Tb_Info.Text = info;
+
+            }
+
+
+
         }
         private void Button_2_Click(object sender, RoutedEventArgs e)
         {
