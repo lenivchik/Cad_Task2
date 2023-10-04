@@ -10,8 +10,8 @@ namespace WpfApp2.Clases
 {
     public class Banknote: INotifyPropertyChanged
     {
-        public int Title { get; set; }
-        public int Max {  get; set; }
+        public int Title { get;}
+        public int Max {  get;}
         private int current;
         private int wish;
 
@@ -43,9 +43,9 @@ namespace WpfApp2.Clases
         public bool Avaible(Boolean inp)
         {
             if (inp)
-                return ((current - wish) > 0);
+                return (Max - current - wish) > 0;
 
-            return (Max-current-wish)>0 ;
+            return ((current - wish) > 0) ;
 
         }
 

@@ -7,15 +7,20 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace WpfApp2.Clases
 {
     public class Handler : INotifyPropertyChanged
     {
-        public List<Banknote> BanknoteList { get;}
+        public List<Banknote> BanknoteList { get; }
         private int balance;
         private Boolean in_out;
-        public  Handler() {
+        private string info_text;
+        private string but_text;
+        private bool inf_fl;
+        private Brush _foregroundColor;
+        public Handler() {
             BanknoteList = new List<Banknote>
             {
                 new Banknote(10, 5, 10),
@@ -27,6 +32,8 @@ namespace WpfApp2.Clases
             };
             balance = 10000;
         }
+
+        public Boolean Inf_fl { get => inf_fl; set { inf_fl = value; Changeinfo(); } }
         public int Balance
         {
             get { return balance; }
@@ -37,32 +44,93 @@ namespace WpfApp2.Clases
             }
         }
 
-
-        public bool Check_Input(int title)
+        public string InfoText
         {
-            Banknote banknote = BanknoteList.Find(x=>x.Title == title);
-            if (banknote.Avaible(in_out))
+            get { return info_text; }
+            set
             {
-                banknote.Wish += 1;
-                in_out = false;
-                return true;
+                info_text = value;
+                OnPropertyChanged("InfoText");
             }
-            in_out = false;
-            return false;
         }
 
-        public bool Check_Output(int title)
+        public string ButText
         {
-            in_out = true;
+            get { return but_text; }
+            set
+            {
+                but_text = value;
+                OnPropertyChanged("ButText");
+            }
+        }
+
+
+        public Brush ForegroundColor
+        {
+            get { return _foregroundColor; }
+            set
+            {
+                _foregroundColor = value;
+                OnPropertyChanged("ForegroundColor");
+            }
+        }
+
+        public void Changeinfo()
+        {
+
+            if (Inf_fl)
+            {
+                InfoText = "Выберете количество вносимых купюр";
+                ButText = "Внести";
+                ForegroundColor = Brushes.Black;
+
+            }
+            else
+            {
+                InfoText = "Выберите купюры для выдачи";
+                ButText = "Снять";
+                ForegroundColor = Brushes.Black;
+
+            }
+        }
+
+        public void Check_Abl(int title)
+        {
+            if (Inf_fl)
+                Check_Input(title);
+            Check_Output(title);
+        }
+
+        public void Check_Input(int title)
+        {
+
+            Banknote banknote = BanknoteList.Find(x=>x.Title == title);
+            if (banknote.Avaible(Inf_fl))      
+                banknote.Wish += 1;
+            else
+            {
+                ForegroundColor = Brushes.Red;
+                if(Inf_fl)
+                    InfoText = "Достигнут лимит ввода данного типа купюр";
+                else
+                    InfoText = "Достигнут лимит вывода данного типа купюр";
+
+            }
+        }
+
+        public void Check_Output(int title)
+        {
             int res = sum();
             Banknote banknote = BanknoteList.Find(x => x.Title == title);
             if (res + title - balance <= 0)
             {
                 Check_Input(title);
-                return true;
             }
             else
-                return false;
+            {
+                ForegroundColor = Brushes.Red;
+                InfoText = "Недостаточно средств";
+            }
         }
         public void min_but(int title)
         {
@@ -82,6 +150,14 @@ namespace WpfApp2.Clases
         }
 
 
+        public void Confirm()
+        {
+            if (Inf_fl)
+                Add_Balance();
+            else
+                Remoove_Balance();
+        }
+
         public void Add_Balance()
         {
             int sum = 0;
@@ -92,7 +168,8 @@ namespace WpfApp2.Clases
                 bank.Wish = 0;
             }
             Balance += sum;
-
+            ForegroundColor = Brushes.Gold;
+            InfoText = "Успешно";
         }
 
         public void Remoove_Balance()
@@ -105,6 +182,8 @@ namespace WpfApp2.Clases
                 bank.Wish = 0;
             }
             Balance -= sum;
+            InfoText = "Успешно";
+            ForegroundColor = Brushes.Gold;
         }
         public void Clear_Wish()
         {
