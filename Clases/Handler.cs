@@ -101,7 +101,7 @@ namespace WpfApp2.Clases
             Check_Output(title);
         }
 
-        public void Check_Input(int title)
+        private void Check_Input(int title)
         {
 
             Banknote banknote = BanknoteList.Find(x=>x.Title == title);
@@ -118,7 +118,7 @@ namespace WpfApp2.Clases
             }
         }
 
-        public void Check_Output(int title)
+        private void Check_Output(int title)
         {
             int res = sum();
             Banknote banknote = BanknoteList.Find(x => x.Title == title);
@@ -158,7 +158,7 @@ namespace WpfApp2.Clases
                 Remoove_Balance();
         }
 
-        public void Add_Balance()
+        private void Add_Balance()
         {
             int sum = 0;
             foreach (var bank in BanknoteList)
@@ -172,7 +172,7 @@ namespace WpfApp2.Clases
             InfoText = "Успешно";
         }
 
-        public void Remoove_Balance()
+        private void Remoove_Balance()
         {
             int sum = 0;
             foreach (var bank in BanknoteList)
